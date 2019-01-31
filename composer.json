@@ -1,0 +1,6 @@
+{
+    "name": "softwarethings/postman-pat",
+    "require": {
+        "swiftmailer/swiftmailer": "^6.0"
+    }
+}
