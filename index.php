@@ -11,14 +11,14 @@ class PostmanPat
      * @var array
      */
     private $smtp = [
-        'host' => 'pro16.linuxpl.com',
-        'port' => '465',
-        'username' => 'dev@softwarethings.pro',
-        'password' => 'b]N(s{fCmM4c',
-        'encryption' => 'ssl',
-        'from_name' => 'PostmanPat',
-        'from_address' => 'dev@softwarethings.pro',
-        'to' => 'kamiljedrkiewicz@gmail.com'
+        'host' => 'smtp.example.com', // mail server aka. host | if you want to use PHP mail() function instead SMTP, leave this empty
+        'port' => '465', // port
+        'username' => 'john@example.com', // mail user
+        'password' => 'qwerty!!!', // mail user password
+        'encryption' => 'ssl', // encryption if is necessary or just null
+        'from_name' => 'John from Example.com', // from who?
+        'from_address' => 'dev@example.com', // company e-mail address, should be in thease same domain
+        'to' => 'contact@example.com' // recipient
     ];
 
     /**
@@ -43,6 +43,8 @@ class PostmanPat
      * @var array
      */
     private $parsed = [];
+
+    private $errors = 'st-errors.txt';
 
     /**
      * PostmanPat constructor.
@@ -118,9 +120,16 @@ class PostmanPat
             if($this->smtp['host'] === '') {
                 $transport = new Swift_SendmailTransport('/usr/sbin/sendmail -bs');
             } else {
-                $transport = (new Swift_SmtpTransport($this->smtp['host'], $this->smtp['port'], $this->smtp['encryption']))
-                    ->setUsername($this->smtp['username'])
-                    ->setPassword($this->smtp['password']);
+                $transport = (new Swift_SmtpTransport($this->smtp['host'], $this->smtp['port'], $this->smtp['encryption']));
+                $transport->setUsername($this->smtp['username']);
+                $transport->setPassword($this->smtp['password']);
+                $transport->setStreamOptions([
+                    'ssl' => [
+                        'allow_self_signed' => true,
+                        'verify_peer' => false,
+                        'verify_peer_name' => false
+                    ]
+                ]);
             }
 
             $swift = new Swift_Message();
@@ -153,6 +162,8 @@ class PostmanPat
 
             echo $this->response();
         } catch (Exception $exception) {
+            file_put_contents($this->errors, date('Y-m-d H:i:s') . ': ' . $exception->getMessage() . PHP_EOL, FILE_APPEND);
+
             echo $this->response($exception->getMessage(), 400);
         }
     }
