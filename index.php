@@ -21,6 +21,11 @@ class PostmanPat
         'to' => 'contact@example.com' // recipient
     ];
 
+    private $captcha = [
+        'site_key' => '', // Site key
+        'secret' => '' // Secret key
+    ];
+
     /**
      * @var array
      */
@@ -116,8 +121,15 @@ class PostmanPat
     {
         $data = $this->parsed;
 
+        if (isset($data['captcha-response']) && !empty($data['captcha-response']) && !empty($this->captcha['site_key'])) {
+            $verify = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $this->captcha['secret'] . '&response=' . $data['captcha-response']));
+            if (!$verify->success) {
+                exit($this->response('Invalid Captcha Code', 422));
+            }
+        }
+
         try {
-            if($this->smtp['host'] === '') {
+            if ($this->smtp['host'] === '') {
                 $transport = new Swift_SendmailTransport('/usr/sbin/sendmail -bs');
             } else {
                 $transport = (new Swift_SmtpTransport($this->smtp['host'], $this->smtp['port'], $this->smtp['encryption']));
@@ -153,7 +165,7 @@ class PostmanPat
                 $content .= '<strong>' . ($this->translation[$key] ?? $key) . ':</strong> ' . $value . PHP_EOL;
             }
 
-            $content .= PHP_EOL . '--' . PHP_EOL . 'Przesłano z adresu IP: ' . $_SERVER['REMOTE_ADDR'];
+            $content .= PHP_EOL . '--' . PHP_EOL . $_SERVER['REMOTE_ADDR'];
 
             $swift->setBody(nl2br($content), 'text/html');
 
