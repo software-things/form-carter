@@ -4,13 +4,24 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd289eb4d7b785c5292579f0b4661a786
+class ComposerStaticInit8473380c3a2432e82b729b9081ecb759
 {
     public static $files = array (
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Symfony\\Polyfill\\Php72\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
+            'Symfony\\Polyfill\\Iconv\\' => 23,
+        ),
         'E' => 
         array (
             'Egulias\\EmailValidator\\' => 23,
@@ -18,6 +29,22 @@ class ComposerStaticInitd289eb4d7b785c5292579f0b4661a786
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php72\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
+        'Symfony\\Polyfill\\Intl\\Idn\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
+        ),
+        'Symfony\\Polyfill\\Iconv\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-iconv',
+        ),
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/EmailValidator',
@@ -37,9 +64,9 @@ class ComposerStaticInitd289eb4d7b785c5292579f0b4661a786
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd289eb4d7b785c5292579f0b4661a786::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd289eb4d7b785c5292579f0b4661a786::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitd289eb4d7b785c5292579f0b4661a786::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8473380c3a2432e82b729b9081ecb759::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8473380c3a2432e82b729b9081ecb759::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8473380c3a2432e82b729b9081ecb759::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }
