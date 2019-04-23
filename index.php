@@ -18,7 +18,9 @@ class PostmanPat
 		'encryption' => 'ssl', // encryption if is necessary or just null
 		'from_name' => 'John from Example.com', // from who?
 		'from_address' => 'dev@example.com', // company e-mail address, should be in thease same domain
-		'to' => 'contact@example.com' // recipient
+		'to' => [
+			'contact@example.com',
+		] // recipients
 	];
 	
 	/**
@@ -159,11 +161,22 @@ class PostmanPat
 					]
 				]);
 			}
-			
+
 			$swift = new Swift_Message();
 			$swift->setSubject($data['_subject'] ?? 'Wiadomość z serwisu ' . $_SERVER['HTTP_HOST']);
 			$swift->setFrom($this->smtp['from_address'], $this->smtp['from_name']);
-			$swift->setTo($this->smtp['to']);
+			
+			if (isset($data['to']) && preg_match('@^[a-zA-Z0-9/+]*={0,2}$@', $data['to'])) {
+				$to = base64_decode($data['to']);
+				if (in_array($to, $this->smtp['to'])) {
+					$swift->setTo($to);
+				}
+			}
+			
+			if($swift->getTo() === null) {
+				$swift->setTo($this->smtp['to'][0]);
+			}
+			
 			$swift->setReplyTo($data['_replyto'] ?? []);
 			$swift->setCc($data['_cc'] ?? []);
 			$swift->setBcc($data['_bcc'] ?? []);
@@ -210,4 +223,4 @@ class PostmanPat
 	}
 }
 
-$PostmanPat = new PostmanPat($_REQUEST);
+$PostmanPat = new PostmanPat(array_merge($_POST, $_GET));
