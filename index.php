@@ -10,22 +10,6 @@ class PostmanPat
 	/**
 	 * @var array
 	 */
-	private $smtp = [
-		'host' => 'smtp.example.com', // mail server aka. host | if you want to use PHP mail() function instead SMTP, leave this empty
-		'port' => '465', // port
-		'username' => 'john@example.com', // mail user
-		'password' => 'qwerty!!!', // mail user password
-		'encryption' => 'ssl', // encryption if is necessary or just null
-		'from_name' => 'John from Example.com', // from who?
-		'from_address' => 'dev@example.com', // company e-mail address, should be in thease same domain
-		'to' => [
-			'contact@example.com',
-		] // recipients
-	];
-	
-	/**
-	 * @var array
-	 */
 	private $captcha = [
 		'site_key' => '', // Site key
 		'secret' => '' // Secret key
@@ -73,6 +57,7 @@ class PostmanPat
 	 */
 	public function __construct(array $data)
 	{
+
 		$this->cors();
 		
 		if ($this->parse($data)) {
