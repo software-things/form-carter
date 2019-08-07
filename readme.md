@@ -1,7 +1,7 @@
 # PostmanPat
 
 ### Configuration
-Just open file index.php and edit following information:
+Just open file config.php and edit following information:
 
 #### SMTP
 ```php
@@ -19,7 +19,7 @@ private $smtp = [
 
 #### Translation
 
-You can simple translate "programing-style" keys to human readable format.
+You can simple translate "programing-style" keys to human readable format in index.php file.
 
 ```php
 private $translation = [
@@ -37,10 +37,8 @@ Just edit $catpcha array within data from:
     https://www.google.com/recaptcha/admin
 
 ```php
-private $captcha = [
-    'site_key' => '', // Site key
-    'secret' => '' // Secret key
-];
+'site_key' => '',
+'secret' => '',
 ```
 
 ### How to use it?
