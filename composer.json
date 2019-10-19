@@ -1,5 +1,6 @@
 {
-    "name": "softwarethings/postman-pat",
+    "name": "softwarethings/form-carter",
+    "description": "Simple library to easily send emails from your contact forms",
     "require": {
         "swiftmailer/swiftmailer": "^6.0"
     }
