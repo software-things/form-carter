@@ -3,9 +3,9 @@
 require_once './vendor/autoload.php';
 
 /**
- * Class PostmanPat
+ * Class FormCarter
  */
-class PostmanPat
+class FormCarter
 {
     /**
      * @var array
@@ -41,7 +41,7 @@ class PostmanPat
     private $errors = 'st-errors.txt';
 
     /**
-     * PostmanPat constructor.
+     * FormCarter constructor.
      * @param array $data
      */
     public function __construct(array $data)
@@ -201,5 +201,5 @@ class PostmanPat
 $data = array_merge($_POST, $_GET);
 
 if (array_filter($data)) {
-    $PostmanPat = new PostmanPat($data);
+    $FormCarter = new FormCarter($data);
 }
