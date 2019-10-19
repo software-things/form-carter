@@ -1,4 +1,4 @@
-# PostmanPat
+# FormCarter
 
 ### Configuration
 Just open file config.php and edit following information:
@@ -43,10 +43,10 @@ Just edit $catpcha array within data from:
 
 ### How to use it?
 
-Using is very simple and cleary. You just need to set proper action url (to main folder of PostmanPat).
+Using is very simple and cleary. You just need to set proper action url (to main folder of FormCarter).
 
 ```html
-<form action="https://example.com/postman-pat" method="POST">
+<form action="https://example.com/form-carter" method="POST">
     <input type="text" name="name">
     <input type="email" name="_replyto">
     <input type="submit" value="Send">
@@ -75,7 +75,7 @@ function setResponse(response) {
 ```
 
 ```html
-<form action="https://example.com/postman-pat" method="POST">
+<form action="https://example.com/form-carter" method="POST">
     <input type="text" name="name">
     <input type="email" name="_replyto">
     <div class="g-recaptcha" data-sitekey="" data-badge="inline" data-size="invisible" data-callback="setResponse"></div>
