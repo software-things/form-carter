@@ -1,9 +1,19 @@
+![Form Carter Logo](https://softwarethings.pro/files/formcarter/formcarter-logo-color.png)
+
 # FormCarter
 
-### Configuration
+FormCarter is a PHP library allowing to easily handle sending emails. In details It's a wrapper on SwiftMailer which you can use on your every website.
+
+## Why should I use FormCarter?
+
+- FormCarter is a time saver – you don't need to configure sending forms on every website you build,
+- FormCarter will accept every field sent from frontend so you can configure once and forget about backend,
+- FormCarter is frontend developer friendly.
+
+## Configuration
 Just open file config.php and edit following information:
 
-#### SMTP
+### SMTP
 ```php
 private $smtp = [
     'host' => 'smtp.example.com', // mail server aka. host | if you want to use PHP mail() function instead SMTP, leave this empty
@@ -17,7 +27,7 @@ private $smtp = [
 ];
 ```
 
-#### Translation
+### Translation
 
 You can simple translate "programing-style" keys to human readable format in index.php file.
 
@@ -29,7 +39,7 @@ private $translation = [
 ];
 ```
 
-#### reCAPTCHA
+### reCAPTCHA
 
 If you want to protect against spam, you could turn on captcha mechanism. 
 Just edit $catpcha array within data from:
@@ -41,7 +51,7 @@ Just edit $catpcha array within data from:
 'secret' => '',
 ```
 
-### How to use it?
+## How to use it?
 
 Using is very simple and cleary. You just need to set proper action url (to main folder of FormCarter).
 
@@ -59,7 +69,7 @@ You should also remember to add valid enctype attribute if you want to send file
 enctype="multipart/form-data"
 ```
 
-#### Google Invisible reCAPTCHA
+## Google Invisible reCAPTCHA example on Frontend
 
 ```html
 <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback" async defer></script>
