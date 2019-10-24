@@ -53,7 +53,7 @@ Just edit $catpcha array within data from:
 
 ## How to use it?
 
-Using is very simple and cleary. You just need to set proper action url (to main folder of FormCarter).
+To use FormCarter from frontend you just need to set proper action url (to main folder of FormCarter).
 
 ```html
 <form action="https://example.com/form-carter" method="POST">
