@@ -11,7 +11,7 @@ If you have found bug in any use case please report it to us, we are using [Gith
 - Provide short description of an encountered problem,
 - If it's possible give us technical details of your backend and frontend environment,
 - If there is any error message remember to copypaste it into new issue,
-- You can attach a screenshot to make issue more clearly.
+- You can attach a screenshot to make issue more clear.
 
 ### Code contribution and pull requests
 
