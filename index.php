@@ -97,7 +97,8 @@ class FormCarter
             if (in_array($key, $this->protected)) {
                 $validated = $this->validation($value);
                 if (is_string($validated)) {
-                    echo $this->response('Invalid email address: ' . $validated, 422);
+                    echo $this->response('Invalid email address: '. $validated, 422);
+                    return false;
                 }
                 $this->parsed[$key] = $validated;
             } else {
