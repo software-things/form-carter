@@ -93,3 +93,7 @@ function setResponse(response) {
     <input type="submit" value="Send">
 </form>
 ```
+
+### To run
+To run simple enviroment run  ```docker-compose up -d``` and set your smtp configuration to ```config.php```
+Then you can send email by ```http://localhost:8080/?text=example_content&email=example_email```
