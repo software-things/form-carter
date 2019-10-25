@@ -2,6 +2,7 @@
     "name": "softwarethings/form-carter",
     "description": "Simple library to easily send emails from your contact forms",
     "require": {
+        "php": "^7.1",
         "swiftmailer/swiftmailer": "^6.0"
     }
 }
