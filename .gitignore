@@ -19,4 +19,5 @@ nbproject
 .settings
 ./vendor/
 /composer.lock
+/st-errors.txt
 /config.php
