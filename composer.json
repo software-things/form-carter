@@ -4,5 +4,13 @@
     "require": {
         "php": "^7.1",
         "swiftmailer/swiftmailer": "^6.0"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "php set_up_config.php"
+        ],
+        "post-update-cmd": [
+            "php set_up_config.php"
+        ]
     }
 }
