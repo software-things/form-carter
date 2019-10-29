@@ -1,4 +1,0 @@
-2019-10-25 18:20:37: Connection could not be established with host smtp.example.com [php_network_getaddresses: getaddrinfo failed: No such host is known.  #0]
-2019-10-25 18:47:07: Connection could not be established with host smtp.example.com [php_network_getaddresses: getaddrinfo failed: No such host is known.  #0]
-2019-10-25 19:40:49: Process could not be started [The system cannot find the path specified.
-]
