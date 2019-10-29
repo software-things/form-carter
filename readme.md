@@ -23,7 +23,7 @@ private $smtp = [
     'encryption' => 'ssl', // encryption if is necessary or just null
     'from_name' => 'John from Example.com', // from who?
     'from_address' => 'dev@example.com', // company e-mail address, should be in thease same domain
-    'to' => 'contact@example.com' // recipient
+    'to' => ['contact@example.com'] // recipient
 ];
 ```
 
@@ -98,3 +98,8 @@ function setResponse(response) {
 At first install dependencies ```docker-compose run composer install```  
 To start simple enviroment run  ```docker-compose up -d``` and set your smtp configuration to ```config.php```
 Then you can send email by ```http://localhost:8080/?name=example_name&email=example_email```
+
+
+## Running tests
+Tests can be run with following command:
+`vendor\bin\phpunit tests`
