@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  nginx:
+    build: ./docker/nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/app
+    working_dir: /app
+    links:
+      - php
+  php:
+    image: php:7.3-fpm
+    volumes:
+      - .:/app
+    working_dir: /app
+  composer:
+    image: composer:latest
+    volumes:
+      - .:/app
+    working_dir: /app
