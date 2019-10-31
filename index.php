@@ -3,6 +3,11 @@
 require_once './vendor/autoload.php';
 
 /**
+ * Class FormCarterException
+ */
+class FormCarterException extends Exception{}
+
+/**
  * Class FormCarter
  */
 class FormCarter
@@ -54,7 +59,7 @@ class FormCarter
     /**
      * @param $data
      * @return string
-     * @throws Exception
+     * @throws FormCarterException
      */
     public function run($data)
     {
@@ -81,7 +86,7 @@ class FormCarter
 
     /**
      * @param $data
-     * @throws Exception
+     * @throws FormCarterException
      */
     private function parse($data)
     {
@@ -89,7 +94,7 @@ class FormCarter
             if (in_array($key, $this->protected)) {
                 $validated = $this->validation($value);
                 if (is_string($validated)) {
-                    throw new \Exception('Invalid email address: ' . $validated, 422);
+                    throw new FormCarterException('Invalid email address: ' . $validated, 422);
                 }
                 $this->parsed[$key] = $validated;
             } else {
@@ -100,7 +105,7 @@ class FormCarter
 
     /**
      * @return string
-     * @throws Exception
+     * @throws FormCarterException
      */
     private function send(): string
     {
@@ -109,7 +114,7 @@ class FormCarter
         if (isset($data['captcha-response']) && !empty($data['captcha-response']) && !empty($this->config['site_key'])) {
             $verify = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $this->config['secret'] . '&response=' . $data['captcha-response']));
             if (!$verify->success) {
-                throw new \Exception('Invalid Captcha Code', 422);
+                throw new FormCarterException('Invalid Captcha Code', 422);
             }
         }
 
@@ -168,6 +173,7 @@ class FormCarter
     }
 }
 
+
 $data = array_merge($_POST, $_GET);
 
 if (array_filter($data)) {
@@ -192,12 +198,16 @@ if (array_filter($data)) {
     $FormCarter = new FormCarter($mailer, $config);
     $status = 200;
 
-    try{
+    try {
         $message = $FormCarter->run($data);
-    } catch (Exception $e) {
+    } catch (FormCarterException $e){
         file_put_contents('st-errors.txt', date('Y-m-d H:i:s') . ': ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
         $message = $e->getMessage();
         $status = $e->getCode() !== 0 ? $e->getCode() : 400;
+    } catch (Exception $e) {
+        file_put_contents('st-errors.txt', date('Y-m-d H:i:s') . ': ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
+        $message = 'Unexpected error occurred. Check log file for details.';
+        $status = 500;
     }
 
     http_response_code($status);

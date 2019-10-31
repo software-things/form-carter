@@ -52,14 +52,23 @@ class FormCarterTest extends TestCase
         $this->assertEquals('OK', $this->formCarter->run($data));
     }
 
-    public function testThatInvalidEmailWillCauseException()
+    public function testThatInvalidEmailWillThrowFormCarterException()
     {
         $data = [
             '_replyto' => 'invalidEmail_test.com',
         ];
 
-        $this->expectException(Exception::class);
+        $this->expectException(FormCarterException::class);
         $this->mailer->expects($this->never())->method('send');
+        $this->assertNull('OK', $this->formCarter->run($data));
+    }
+
+    public function testThatInvalidEmailWillThrowException()
+    {
+        $data = [];
+
+        $this->expectException(Exception::class);
+        $this->mailer->expects($this->once())->method('send')->willThrowException(new Exception);
         $this->assertNull('OK', $this->formCarter->run($data));
     }
 
