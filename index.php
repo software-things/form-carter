@@ -3,6 +3,11 @@
 require_once './vendor/autoload.php';
 
 /**
+ * Class FormCarterException
+ */
+class FormCarterException extends Exception{}
+
+/**
  * Class FormCarter
  */
 class FormCarter
@@ -168,7 +173,6 @@ class FormCarter
     }
 }
 
-class FormCarterException extends Exception{}
 
 $data = array_merge($_POST, $_GET);
 
