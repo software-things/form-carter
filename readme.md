@@ -2,12 +2,12 @@
 
 # FormCarter
 
-FormCarter is a PHP library allowing to easily handle sending emails. In details It's a wrapper on SwiftMailer which you can use on your every website.
+FormCarter is a PHP library allowing people to easily handle sending emails. In details It's a wrapper on SwiftMailer which you can use on your website.
 
 ## Why should I use FormCarter?
 
-- FormCarter is a time saver – you don't need to configure sending forms on every website you build,
-- FormCarter will accept every field sent from frontend so you can configure once and forget about backend,
+- FormCarter is a time saver – you don't need to configure sending forms on every website you build.
+- FormCarter will accept every field sent from frontend so you can configure once and forget about backend.
 - FormCarter is frontend developer friendly.
 
 ## Configuration
@@ -16,9 +16,9 @@ Just open file config.php and edit following information:
 ### SMTP
 ```php
 private $smtp = [
-    'host' => 'smtp.example.com', // mail server aka. host | if you want to use PHP mail() function instead SMTP, leave this empty
+    'host' => 'smtp.example.com', // mail server aka. host | if you want to use PHP mail() function instead of SMTP, leave this empty
     'port' => '465', // port
-    'username' => 'john@example.com', // mail user
+    'username' => 'john@example.com', // mail user name
     'password' => 'qwerty!!!', // mail user password
     'encryption' => 'ssl', // encryption if is necessary or just null
     'from_name' => 'John from Example.com', // from who?
@@ -95,7 +95,7 @@ function setResponse(response) {
 ```
 
 ### To run
-At first install dependencies ```docker-compose run composer install```  
+First, install dependencies ```docker-compose run composer install```  
 To start simple enviroment run  ```docker-compose up -d``` and set your smtp configuration to ```config.php```
 Then you can send email by ```http://localhost:8080/?name=example_name&email=example_email```
 
