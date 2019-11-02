@@ -17,7 +17,7 @@ nbproject
 .idea
 .project
 .settings
-./vendor/
+/vendor
 /composer.lock
 /st-errors.txt
 /config.php
