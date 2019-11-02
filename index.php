@@ -119,7 +119,7 @@ class FormCarter
         }
 
         $swift = new Swift_Message();
-        $swift->setSubject($data['_subject'] ?? 'Wiadomość z serwisu ' . ($_SERVER['HTTP_HOST'] ?? ''));
+        $swift->setSubject($data['_subject'] ?? $this->config['default_title'] . ($_SERVER['HTTP_HOST'] ?? ''));
         $swift->setFrom($this->config['from_address'], $this->config['from_name']);
 
         if (isset($data['to']) && preg_match('@^[a-zA-Z0-9/+]*={0,2}$@', $data['to'])) {
