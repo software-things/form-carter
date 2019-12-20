@@ -5,7 +5,9 @@ require_once './vendor/autoload.php';
 /**
  * Class FormCarterException
  */
-class FormCarterException extends Exception{}
+class FormCarterException extends Exception
+{
+}
 
 /**
  * Class FormCarter
@@ -169,6 +171,8 @@ class FormCarter
             if (in_array($origin, $this->config['domains'])) {
                 header('Access-Control-Allow-Origin: ' . $origin);
             }
+        } else {
+            header('Access-Control-Allow-Origin: *');
         }
     }
 }
@@ -200,7 +204,7 @@ if (array_filter($data)) {
 
     try {
         $message = $FormCarter->run($data);
-    } catch (FormCarterException $e){
+    } catch (FormCarterException $e) {
         file_put_contents('st-errors.txt', date('Y-m-d H:i:s') . ': ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
         $message = $e->getMessage();
         $status = $e->getCode() !== 0 ? $e->getCode() : 400;
