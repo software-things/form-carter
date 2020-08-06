@@ -1,3 +1,4 @@
+
 <?php declare(strict_types=1);
 
 require_once './vendor/autoload.php';
@@ -147,9 +148,17 @@ class FormCarter
 
         $content = null;
         foreach ($data as $key => $value) {
-            if ($key[0] === '_') continue;
+            if(is_array($key) == true){
+                for( $i = 0; $x <  sizeof($key); $x++ ){
+                    if ($key[$x] === '_') continue; 
 
-            $content .= '<strong>' . ($this->translation[$key] ?? $key) . ':</strong> ' . $value . PHP_EOL;
+                    $content .= '<strong>' . ($this->translation[$key[$x]] ?? $key) . ':</strong> ' . $value . PHP_EOL;
+                }
+            } else {
+                if ($key[0] === '_') continue;
+
+                $content .= '<strong>' . ($this->translation[$key] ?? $key) . ':</strong> ' . $value . PHP_EOL;
+            }
         }
 
         $content .= PHP_EOL . '--' . PHP_EOL . ($_SERVER['REMOTE_ADDR'] ?? '');
