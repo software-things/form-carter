@@ -149,7 +149,7 @@ class FormCarter
         $content = null;
         foreach ($data as $key => $value) {
             if(is_array($key) == true){
-                for( $i = 0; $x <  sizeof($key); $x++ ){
+                for( $x = 0; $x <  sizeof($key); $x++ ){
                     if ($key[$x] === '_') continue; 
 
                     $content .= '<strong>' . ($this->translation[$key[$x]] ?? $key) . ':</strong> ' . $value . PHP_EOL;
